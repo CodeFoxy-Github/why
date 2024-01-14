@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <!-- Include necessary libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="app" class="mdui-theme-light">
+
+    <h1>Cloud Chat</h1>
+    <link rel="stylesheet" href="/index.4d663569.css">
+    <div class="mdui-theme-light">
+      <mdui-card>
+    <ul id="messages"></ul>
+    </mdui-card></div>
+
+    <div id="formb3">
+        <mdui-text-field type="text" name="name" placeholder="Enter your Username" id="input_btrusername" variant="outlined" onkeypress="handle(event)">
+        <mdui-button onclick="setUsername();">Start</mdui-button>
+    </mdui-text-field></div>
+
+<script>function handle(e) {
+    if (e.keyCode === 13) setUsername();
+}
+function CHAThandle(e) {
+    if (e.keyCode === 13) addMessage();
+}
+
+</script>
+    <div id="formb2">
+      <mdui-card> <mdui-text-field type="text" name="messabge" placeholder="Enter message here" id="input_btrmeassage" onkeypress="CHAThandle(event)">
+      <br>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+      </mdui-text-field></mdui-card>
+      
+      <mdui-button type="submit" onclick="addMessage()">Send
+      <br>
+
+    </mdui-button></div>
+  
+    <script>let username = "";
+let lastSyncTime = 0;
+document.head.appendChild((($1, s)=>{
+    $1.src = s;
+    return $1;
+})(document.createElement("script"), "cloud.js"));
+var test = cloud_chatMessages;
+var cloud_chatMessages = [];
+function addMessage() {
+    var message = document.getElementById("input_btrmeassage").value;
+    cloud_chatMessages.push(`${username} : ` + message);
+    document.getElementById("input_btrmeassage").value = "";
+    updateMessages();
+}
+setInterval(updateMessages, 0); // update every 5 seconds
+function updateMessages() {
+    let messages = cloud_chatMessages;
+    let messagesElement = document.getElementById("messages");
+    messagesElement.innerHTML = "";
+    for (const message of messages)messagesElement.innerHTML += `<h3>${message} ` + `&nbsp;&nbsp;&nbsp;  </h3>`;
+    lastSyncTime = Date.now();
+}
+function setUsername(newUsername) {
+    username = document.getElementById("input_btrusername").value;
+    fmbnsr.hidden = false;
+    $("#formb3").remove();
+    updateMessages();
+}
+
+</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>var o = document.createElement("script");
+o.src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js", o.onload = ()=>{
+    let n = io("https://cloudvarapi.kihtrak.com/"), o = "playground", i = (window.location.hostname && (o = encodeURIComponent(window.location.protocol + "//" + window.location.hostname).replace(/\./g, "%2E")), n.on("init-" + o, (o)=>{
+        for(var n in o)i[n] = JSON.parse(JSON.stringify(o[n])), null == window[n] && (window[n] = o[n]);
+    }), n.on("newVal-" + o, (o)=>{
+        var n = Object.keys(o)[0];
+        window[n] = o[n], i[n] = JSON.parse(JSON.stringify(o[n]));
+    }), {}), t = (o)=>"number" == typeof o || "string" == typeof o ? o : "object" == typeof o ? JSON.stringify(o) : "function" == typeof o ? o.toString() : o;
+    setInterval(()=>{
+        for(var o in window)0 == o.indexOf("cloud_") && t(i[o]) !== t(window[o]) && (i[o] = "object" == typeof window[o] ? JSON.parse(JSON.stringify(window[o])) : window[o], n.emit("varChanged", {
+            [o]: "function" == typeof window[o] ? window[o].toString() : window[o]
+        }));
+    }, 0);
+}, document.head.appendChild(o);
+const fm1bnsr = document.getElementById("formb3");
+const fmbnsr = document.getElementById("formb2");
+fmbnsr.hidden = true;
+
+</script>
+
+    </div>
+
+    <!-- Include your other scripts -->
+    <script src="/index.579125c3.js"></script>
+    <script src="/index.ac9dc4ba.js" defer=""></script>
+
+</body>
+</html>
